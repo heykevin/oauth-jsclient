@@ -361,7 +361,7 @@ describe('Validate Id Token ', () => {
   before(() => {
     nock('https://oauth.platform.intuit.com').persist()
       .get('/op/v1/jwks')
-      .reply(200, expectedjwkResponseCall, {
+      .reply(200, expectedjwkResponseCall.body, {
         'content-type': 'application/json;charset=UTF-8',
         'content-length': '264',
         connection: 'close',
@@ -376,7 +376,7 @@ describe('Validate Id Token ', () => {
 
   const mockIdTokenPayload = {
     sub: 'b053d994-07d5-468d-b7ee-22e349d2e739',
-    aud: 'clientID',
+    aud: ['clientID'],
     realmid: '1108033471',
     auth_time: 1462554475,
     iss: 'https://oauth.platform.intuit.com/op/v1',
