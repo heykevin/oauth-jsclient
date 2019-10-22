@@ -1,5 +1,4 @@
 'use strict';
-const proxyquire = require('proxyquire');
 const {
   describe,
   it,
@@ -402,7 +401,7 @@ describe('Validate Id Token ', () => {
   });
 
   it('Validate Id Token alternative', () => {
-    oauthClient.getToken().setToken(mockToken);
+    oauthClient.setToken(mockToken);
     oauthClient.validateIdToken()
       .then((response) => {
         expect(response).to.be.equal(true);

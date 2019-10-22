@@ -154,7 +154,7 @@ OAuthClient.prototype.createToken = function createToken(uri) {
         'User-Agent': OAuthClient.user_agent,
       },
     };
-   
+
     resolve(this.getTokenRequest(request));
   }))).then((res) => {
     const authResponse = res.json ? res : null;
@@ -484,6 +484,7 @@ OAuthClient.prototype.validateIdToken = function validateIdToken(params = {}) {
         'User-Agent': OAuthClient.user_agent,
       },
     };
+
     return resolve(this.getKeyFromJWKsURI(id_token, id_token_header.kid, request));
   }))).then((res) => {
     this.log('info', 'The validateIdToken () response is : ', JSON.stringify(res, null, 2));
@@ -511,6 +512,7 @@ OAuthClient.prototype.getKeyFromJWKsURI = function getKeyFromJWKsURI(id_token, k
     const responseBody = JSON.parse(response.body);
     const key = responseBody.keys.find(el => (el.kid === kid));
     const cert = this.getPublicKey(key.n, key.e);
+
     return jwt.verify(id_token, cert);
   }).catch((e) => {
     e = this.createError(e);
