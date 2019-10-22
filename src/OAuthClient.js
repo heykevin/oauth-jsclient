@@ -154,6 +154,7 @@ OAuthClient.prototype.createToken = function createToken(uri) {
         'User-Agent': OAuthClient.user_agent,
       },
     };
+   
     resolve(this.getTokenRequest(request));
   }))).then((res) => {
     const authResponse = res.json ? res : null;
